@@ -8,6 +8,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
+import timber.log.Timber
 
 class FaceDetectionImageAnalyzer: ImageAnalysis.Analyzer {
 
@@ -32,6 +33,7 @@ class FaceDetectionImageAnalyzer: ImageAnalysis.Analyzer {
 
             // InputImage from ml kit
             val image = InputImage.fromMediaImage(img, imageProxy.imageInfo.rotationDegrees)
+            Timber.i("rekt imeg: ${image.width} x ${image.height}")
             detector.process(image)
                 .addOnCompleteListener { task ->
                     onCompleteListener?.onComplete(task.result, outputTransform)
